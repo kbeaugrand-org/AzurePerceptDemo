@@ -9,6 +9,8 @@ The Angular application displays the Eye video stream from WebStream module (fro
 
 ## Demo
 
+![image](https://user-images.githubusercontent.com/9513635/185103620-9f5bc371-5eb9-42ee-a5b3-7342b64b23c0.png)
+
 ## Usage
 
 To use the module, you need to deploy the following Azure IoT Edge module:
@@ -33,6 +35,10 @@ To use the module, you need to deploy the following Azure IoT Edge module:
         "AzureEyeModuleToPerceptDemo": "FROM /messages/modules/azureeyemodule/outputs/*  INTO BrokeredEndpoint(\"/modules/AzurePerceptDemo/inputs/inputMessage\")"
     },
 ```
+
+### Access to the stream
+
+Once connected, you can go to [http://your.new.device:8080](http://your.new.device:8080) to access to the Web page.
 
 ## License
 
