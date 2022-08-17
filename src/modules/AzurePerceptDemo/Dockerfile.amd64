@@ -1,0 +1,32 @@
+FROM node:14-alpine as base
+
+FROM base as build
+
+WORKDIR /app
+COPY Front/package.json ./
+
+RUN npm install && \
+    npm install -g @angular/cli
+
+COPY Front/ ./
+
+RUN ng build
+
+FROM base
+
+RUN mkdir -p /app/wwwroot
+WORKDIR /app/
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY *.js ./
+COPY --from=build /app/dist/* ./wwwroot/
+
+EXPOSE 8080
+EXPOSE 8081
+
+USER node
+
+CMD ["node", "app.js"]

@@ -1,0 +1,31 @@
+FROM arm64v8/node:14-slim as base
+
+FROM base as build
+
+WORKDIR /app
+COPY Front/package.json ./
+
+RUN npm install && \
+    npm install -g @angular/cli
+
+COPY Front/ ./
+
+RUN ng build
+
+FROM base
+
+WORKDIR /app/
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY *.js ./
+COPY --from=build /app/dist/* ./wwwroot/
+
+EXPOSE 8080
+EXPOSE 8081
+
+USER node
+
+CMD ["node", "app.js"]

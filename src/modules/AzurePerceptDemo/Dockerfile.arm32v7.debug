@@ -1,0 +1,32 @@
+FROM arm32v7/node:14-slim as base
+
+FROM base as build
+
+WORKDIR /app
+COPY Front/package.json ./
+
+RUN npm install && \
+    npm install -g @angular/cli
+
+COPY Front/ ./
+
+RUN ng build
+
+FROM base
+
+WORKDIR /app/
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY *.js ./
+COPY --from=build /app/dist/* ./wwwroot/
+
+EXPOSE 9229
+EXPOSE 8080
+EXPOSE 8081
+
+USER node
+
+CMD ["node", "--inspect=0.0.0.0:9229", "app.js"]
