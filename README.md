@@ -42,4 +42,4 @@ Once connected, you can go to [http://your.new.device:8080](http://your.new.devi
 
 ## License
 
-This project is licensed under the MIT License (see [./LICENSE.md](LICENSE.md)) for more details.
+This project is licensed under the MIT License (see [LICENSE.md](LICENSE.md)) for more details.
