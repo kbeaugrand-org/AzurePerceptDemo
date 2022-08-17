@@ -19,7 +19,7 @@ To use the module, you need to deploy the following Azure IoT Edge module:
  "AzurePerceptDemo": {
         "restartPolicy": "always",
         "settings": {
-            "image": "kbeperceptdemoacr.azurecr.io/azureperceptdemo:0.0.1-arm64v8",
+            "image": "ghcr.io/kbeaugrand-org/azureperceptdemo:latest",
             "createOptions": "{\"ExposedPorts\":{\"8080/tcp\":{},\"8081/tcp\":{}},\"HostConfig\":{\"PortBindings\":{\"8080/tcp\":[{\"HostPort\":\"8080\"}],\"8081/tcp\":[{\"HostPort\":\"8081\"}]}}}"
         },
         "status": "running",
