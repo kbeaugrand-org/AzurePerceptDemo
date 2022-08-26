@@ -35,9 +35,7 @@ export class AzurePerceptVideoStreamComponent implements OnInit {
 
   renderImage(imgBuffer: any, streamnum: number) {
     this.frameCount++
-    if (this.frameCount % 5 != 0) {
-      return
-    }
+
     // console.log('renderImage... frame#=' + frameCount + ", len=" + imgBuffer.byteLength);
 
     var packet = new Uint8Array(imgBuffer)
